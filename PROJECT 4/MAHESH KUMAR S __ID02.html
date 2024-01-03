@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Calculator Screen</title>
+    <style>
+        table,
+            th,
+            td {
+                border:solid black;      }
+               table,th, td {
+                padding: 15px;
+                margin-left: 42%;
+            text-align: center;
+        }
+
+        h1 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <centre>
+    <h1>Calculator</h1>
+    <table>
+        <tr>
+            <th onclick="clearDisplay()">AC</th>
+            <th onclick="clearToDisplay()">X</th>
+            <th onclick="appendToDisplay('%')">%</th>
+            <th onclick="appendToDisplay('/')">/</th>
+        </tr>
+        <tr>
+            <td onclick="appendToDisplay('7')">7</td>
+            <td onclick="appendToDisplay('8')">8</td>
+            <td onclick="appendToDisplay('9')">9</td>
+            <th onclick="appendToDisplay('*')">*</th>
+        </tr>
+        <tr>
+            <td onclick="appendToDisplay('4')">4</td>
+            <td onclick="appendToDisplay('5')">5</td>
+            <td onclick="appendToDisplay('6')">6</td>
+            <th onclick="appendToDisplay('-')">-</th>
+        </tr>
+        <tr>
+            <td onclick="appendToDisplay('1')">1</td>
+            <td onclick="appendToDisplay('2')">2</td>
+            <td onclick="appendToDisplay('3')">3</td>
+            <th onclick="appendToDisplay('+')">+</th>
+        </tr>
+        <tr>
+            <td onclick="appendToDisplay('0')">0</td>
+            <td onclick="appendToDisplay('.')">.</td>
+            <td onclick="calculateResult()">=</td>
+            <td><input type="text" id="display"></td>
+        </tr>
+    </table>
+    <script>
+        //
+        let display = document.getElementById("display");
+//value display on the evaluate box
+        function appendToDisplay(value) {
+            display.value += value;
+//by more than one value we can do the operation so append is required
+        }
+//clear all value in display box 
+        function clearDisplay() {
+            display.value = "";
+        }
+
+        function clearToDisplay() {
+            let currentValue = display.value;
+//substring -1 will clear avalue in reverse order
+            display.value = currentValue.substring(0, currentValue.length - 1);
+        }
+
+        function calculateResult() {
+            try {
+                display.value = eval(display.value);
+            } catch (error) {
+                display.value = "Error";
+            }
+        }
+    </script>
+    </centre>
+</body>
+</html>
